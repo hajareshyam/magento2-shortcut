@@ -38,11 +38,9 @@ foreach ($collection as $key => $value) {
 		$productObj = $objectManager->create('Magento\Catalog\Model\Product')->load($pId);
 		$categoryLinkManagement = $objectManager->create('Magento\Catalog\Api\CategoryLinkManagementInterface');
 
-		$categoryLinkManagement->assignProductToCategories(
-			$productObj->getSku(),
-			array(2,651,652,657) // Categories ids 
-		);
-
+		$newCategoryIds = array(2,651,665);
+		$categoryIds = array_values(array_merge($newCategoryIds, $oldCategoryIds));
+		$categoryLinkManagement->assignProductToCategories($productObj->getSku(),$categoryIds);
 	}
 
 }
